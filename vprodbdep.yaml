@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: vprodb
   labels:
-    app: vprodb
+    app: vprodb # for server definition file
 spec:
   selector:
     matchLabels:
-      app: vprodb
+      app: vprodb # if there is a port with this label then consider it in this dpl
   replicas: 1
   template:
     metadata:
       labels:
-        app: vprodb
+        app: vprodb # pod will have this name
     spec:
       containers:
         - name: vprodb
@@ -20,22 +20,23 @@ spec:
           args:
             - '--ignore-db-dir'
             - 'lost+found'
-          volumeMounts:
+          volumeMounts: # mount volume from  vpro-db-data
             - mountPath: /var/lib/mysql
               name: vpro-db-data
           ports:
             - name: vprodb-port
               containerPort: 3306
           env:
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD # var name
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: app-secret # get value of pass
                   key: db-pass
       nodeSelector:
         zone: us-east-1a
-      volumes:
+      volumes: # create volume
         - name: vpro-db-data
           awsElasticBlockStore:
             volumeID: vol-0510a1fb51b8e9be3
-            fsType: ext4
+            fsType: ext4 # creates dir lost + found
+
