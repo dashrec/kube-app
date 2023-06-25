@@ -18,8 +18,8 @@ spec:
         - name: vprodb
           image: dash007/vprofiledb:latest
           args:
-            - '--ignore-db-dir'
-            - 'lost+found'
+              - '--ignore-db-dir'
+              - 'lost+found'
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: vpro-db-data
