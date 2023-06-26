@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vprodb
-          image: dash007/vprofiledb:latest
+          image: dash007/vprofiledb
             - '--ignore-db-dir'
             - 'lost+found'
           volumeMounts:
