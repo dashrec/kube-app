@@ -28,7 +28,10 @@ spec:
               containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: 'vprodbpass'
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: db-pass
       nodeSelector:
         zone: us-east-1a
       volumes:
@@ -37,7 +40,3 @@ spec:
           awsElasticBlockStore:
             volumeID: vol-04a61221bd6b99bfd
             fsType: ext4
-#        env:
-#         - name: MYSQL_ROOT_PASSWORD
-#           value: "vprodbpass"
-
