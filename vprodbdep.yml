@@ -17,11 +17,10 @@ spec:
       containers:
         - name: vprodb
           image: dash007/vprofiledb:latest
-          args:
-            - '--ignore-db-dir'
-            - 'lost+found'
+          securityContext:
+            runAsUser: 999
           volumeMounts:
-            - mountPath: /var/lib/mysql
+            - mountPath: /mnt/data
               name: vpro-db-data
           ports:
             - name: vprodb-port
@@ -38,5 +37,5 @@ spec:
         - name: vpro-db-data
           # This AWS EBS volume must already exist.
           awsElasticBlockStore:
-            volumeID: vol-0478c8ccf2c79684d
+            volumeID: vol-0a42948c4c75a6691
             fsType: ext4
