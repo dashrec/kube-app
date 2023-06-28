@@ -5,8 +5,8 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: vproapp-port
+      targetPort: vproapp-port # this is a port name defined in app deployment file
       protocol: TCP
   selector:
     app: vproapp
-  type: LoadBalancer
+  type: LoadBalancer # its gonna launch elastic load balancer

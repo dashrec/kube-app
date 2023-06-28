@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vpromc
-          image: memcached
+          image: memcached # official memcached image from dockerhub
           ports:
             - name: vpromc-port
               containerPort: 11211

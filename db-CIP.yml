@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vprodb
+  name: vprodb # this is a name defined in application_property in mysql url
 spec:
   ports:
     - port: 3306
-      targetPort: vprodb-port
+      targetPort: vprodb-port # this is a port name in vprodbdep.yaml file
       protocol: TCP
   selector:
     app: vprodb
-  type: ClusterIP
+  type: ClusterIP # this is lable app name defined in vprodbdep.yaml labels: app: vprodb
+# this is a service for the db
